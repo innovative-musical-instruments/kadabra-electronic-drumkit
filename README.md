@@ -38,6 +38,6 @@ commercially, as long as you credit Innovative Musical Instruments (IMI).
 ## About IMI
 
 K-Samplers are developed by [Innovative Musical Instruments (IMI)](https://www.innovativemusicalinstruments.com),
-collaborators of Tribal Tools [Tribal Tools](https://www.tribal-tools.com), 
+collaborators of [Tribal Tools](https://www.tribal-tools.com), 
 creators of the Kadabra — a wearable Music Workstation that straps to the player's
 neck and shoulders, featuring motion sensors, touch keyboards, and button arrays.
