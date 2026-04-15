@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<samplemap ID="ElectronicDrumkitSampleMap" RRGroupAmount="1.0" MicPositions=";"
+           CrossfadeGamma="1.0" SaveMode="2">
+  <sample Root="0" LoKey="0" HiKey="0" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_0_Kick1.wav"
+          Duplicate="1" SampleEnd="37565" MonolithOffset="0" MonolithLength="40960"
+          SampleRate="44100.0"/>
+  <sample Root="1" LoKey="1" HiKey="1" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_1_Kick2.wav"
+          Duplicate="1" SampleEnd="8672" MonolithOffset="40960" MonolithLength="12288"
+          SampleRate="44100.0"/>
+  <sample Root="2" LoKey="2" HiKey="2" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_2_Kick3.wav"
+          Duplicate="1" SampleEnd="17832" MonolithOffset="53248" MonolithLength="20480"
+          SampleRate="44100.0"/>
+  <sample Root="3" LoKey="3" HiKey="3" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_3_Kick4.wav"
+          Duplicate="1" SampleEnd="11715" MonolithOffset="73728" MonolithLength="12288"
+          SampleRate="44100.0"/>
+  <sample Root="4" LoKey="4" HiKey="4" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_4_Kick5.wav"
+          Duplicate="1" SampleEnd="30683" MonolithOffset="86016" MonolithLength="32768"
+          SampleRate="44100.0"/>
+  <sample Root="5" LoKey="5" HiKey="5" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_5_Kick6.wav"
+          Duplicate="1" SampleEnd="13813" MonolithOffset="118784" MonolithLength="16384"
+          SampleRate="44100.0"/>
+  <sample Root="6" LoKey="6" HiKey="6" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_6_Kick7.wav"
+          Duplicate="1" SampleEnd="5850" MonolithOffset="135168" MonolithLength="8192"
+          SampleRate="44100.0"/>
+  <sample Root="7" LoKey="7" HiKey="7" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_7_Kick8.wav"
+          Duplicate="1" SampleEnd="12738" MonolithOffset="143360" MonolithLength="16384"
+          SampleRate="44100.0"/>
+  <sample Root="8" LoKey="8" HiKey="8" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_8_Kick9.wav"
+          Duplicate="1" SampleEnd="15472" MonolithOffset="159744" MonolithLength="16384"
+          SampleRate="44100.0"/>
+  <sample Root="9" LoKey="9" HiKey="10" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_9-10_Kick10.wav"
+          Duplicate="1" SampleEnd="12738" MonolithOffset="176128" MonolithLength="16384"
+          SampleRate="44100.0"/>
+  <sample Root="11" LoKey="11" HiKey="11" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_11_Kick11.wav"
+          Duplicate="1" SampleEnd="11399" MonolithOffset="192512" MonolithLength="12288"
+          SampleRate="44100.0"/>
+  <sample Root="12" LoKey="12" HiKey="23" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_12-23_Rim1.wav"
+          Duplicate="1" SampleEnd="3626" MonolithOffset="204800" MonolithLength="4096"
+          SampleRate="44100.0"/>
+  <sample Root="24" LoKey="24" HiKey="35" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_24-35_Snare1.wav"
+          Duplicate="1" SampleEnd="11359" MonolithOffset="208896" MonolithLength="12288"
+          SampleRate="44100.0"/>
+  <sample Root="36" LoKey="36" HiKey="42" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_36-42_Clap1.wav"
+          Duplicate="1" SampleEnd="53488" MonolithOffset="221184" MonolithLength="57344"
+          SampleRate="44100.0"/>
+  <sample Root="43" LoKey="43" HiKey="47" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_43-47_Clap2.wav"
+          Duplicate="1" SampleEnd="21442" MonolithOffset="278528" MonolithLength="24576"
+          SampleRate="44100.0"/>
+  <sample Root="48" LoKey="48" HiKey="49" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_48-49_CHH1.wav"
+          Duplicate="1" SampleEnd="2608" MonolithOffset="303104" MonolithLength="4096"
+          SampleRate="44100.0"/>
+  <sample Root="50" LoKey="50" HiKey="51" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_50-51_CHH2.wav"
+          Duplicate="1" SampleEnd="3718" MonolithOffset="307200" MonolithLength="4096"
+          SampleRate="44100.0"/>
+  <sample Root="52" LoKey="52" HiKey="52" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_52_CHH3.wav"
+          Duplicate="1" SampleEnd="8197" MonolithOffset="311296" MonolithLength="12288"
+          SampleRate="44100.0"/>
+  <sample Root="53" LoKey="53" HiKey="54" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_53-54_CHH3.wav"
+          Duplicate="1" SampleEnd="7645" MonolithOffset="323584" MonolithLength="8192"
+          SampleRate="44100.0"/>
+  <sample Root="55" LoKey="55" HiKey="56" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_55-56_OHH1.wav"
+          Duplicate="1" SampleEnd="9553" MonolithOffset="331776" MonolithLength="12288"
+          SampleRate="44100.0"/>
+  <sample Root="57" LoKey="57" HiKey="59" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_57-59_OHH2.wav"
+          Duplicate="1" SampleEnd="19309" MonolithOffset="344064" MonolithLength="20480"
+          SampleRate="44100.0"/>
+  <sample Root="60" LoKey="60" HiKey="71" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_60-71_Tom1.wav"
+          Duplicate="1" SampleEnd="49979" MonolithOffset="364544" MonolithLength="53248"
+          SampleRate="44100.0"/>
+  <sample Root="72" LoKey="72" HiKey="83" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_72-83_Ride1.wav"
+          Duplicate="1" SampleEnd="45417" MonolithOffset="417792" MonolithLength="49152"
+          SampleRate="44100.0"/>
+  <sample Root="84" LoKey="84" HiKey="95" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_84-75_Crash1.wav"
+          Duplicate="1" SampleEnd="37889" MonolithOffset="466944" MonolithLength="40960"
+          SampleRate="44100.0"/>
+</samplemap>

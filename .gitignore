@@ -6,6 +6,24 @@ Builds/
 *.tmp
 *.log
 
+# HISE autosaves
+Presets/Autosave_*.hip
+Presets/*_Recovered.xml
+
+# HISE compiled caches (auto-regenerated)
+PooledResources/
+
+# HISE sample monolith (users build from WAV files)
+*.hr1
+*.ch1
+
+# Old development iterations
+Presets/IMI Instrument BaseProject.hip
+XmlPresetBackups/IMI Instrument BaseProject*
+Scripts/ScriptProcessors/IMIInstrumentBaseProject/
+Scripts/ScriptProcessors/KDBR_EDFilmstripping1/
+Scripts/ScriptProcessors/KEDK_GUI_MACRO_OK1/
+
 # macOS system files
 .DS_Store
 .AppleDouble
