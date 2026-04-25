@@ -2,7 +2,7 @@
 
 <ContentProperties DeviceType="Desktop">
   <Component type="ScriptImage" id="imgBackground" x="0.0" y="0.0" width="800.0"
-             height="400.0" fileName="{PROJECT_FOLDER}IMI VI Plugin BKG - Electronic DrumKit9.png"
+             height="400.0" fileName="{PROJECT_FOLDER}IMI VI Plugin BKG - Electronic DrumKit11.png"
              text="Background Image">
     <Component type="ScriptPanel" id="pnlMain" x="0.0" y="0.0" width="800.0"
                height="400.0" parentComponent="imgBackground">
@@ -11,7 +11,7 @@
                  processorId="Saturator1" parameterId="Saturation" parentComponent="pnlMain"
                  useUndoManager="1" filmstripImage="{PROJECT_FOLDER}final-71.png"
                  numStrips="128.0" scaleFactor="0.2800000011920929" height="80.0"
-                 width="80.0" showTextBox="0" itemColour="989855744"/>
+                 width="80.0" showTextBox="0" itemColour="989855744" isPluginParameter="1"/>
       <Component type="ScriptLabel" id="saturationValue" x="97.0" y="180.0" parentComponent="pnlMain"
                  width="50.0" height="18.0" text="0%" editable="0" processorId="KDED_GoodGUI1"
                  textColour="4288387995" bgColour="4278190080"/>
@@ -21,30 +21,34 @@
                  max="18.0" stepSize="0.1000000014901161" suffix=" dB" middlePosition="0.0"
                  parentComponent="pnlMain" filmstripImage="{PROJECT_FOLDER}final-71.png"
                  numStrips="128.0" scaleFactor="0.2800000011920929" width="80.0"
-                 height="80.0" showTextBox="0"/>
+                 height="80.0" showTextBox="0" isPluginParameter="1"/>
       <Component type="ScriptLabel" id="brightnessValue" x="97.0" y="302.0" width="50.0"
-                 height="18.0" text="0.1dB" processorId="KDED_GoodGUI1" parentComponent="pnlMain"
+                 height="18.0" text="0.0dB" processorId="KDED_GoodGUI1" parentComponent="pnlMain"
                  textColour="4288387995" bgColour="4278190080"/>
       <Component type="ScriptSlider" id="Delay Mix" x="190.0" y="100.0" tooltip="Delay Mix"
                  macroControl="No MacroControl" pluginParameterName="Delay Mix"
                  processorId="Delay1" parameterId="Mix" parentComponent="pnlMain"
                  useUndoManager="1" filmstripImage="{PROJECT_FOLDER}final-71.png"
                  numStrips="128.0" scaleFactor="0.2800000011920929" width="80.0"
-                 height="80.0" showTextBox="0"/>
+                 height="80.0" showTextBox="0" isPluginParameter="1"/>
       <Component type="ScriptLabel" id="delayMixValue" x="207.0" y="182.0" parentComponent="pnlMain"
                  width="50.0" height="18.0" text="0%" textColour="4288387995"
                  bgColour="4278190080"/>
-      <Component type="ScriptSlider" id="Delay Time" x="169.0" y="220.0" stepSize="1.0"
-                 max="127.0" macroControl="Macro 2" middlePosition="64.0" parentComponent="pnlMain"
-                 filmstripImage="{PROJECT_FOLDER}final-71.png" numStrips="128.0"
-                 scaleFactor="0.2000000029802322" width="60.0" height="60.0" showTextBox="0"/>
-      <Component type="ScriptLabel" id="delayTimeValue" x="180.0" y="282.0" parentComponent="pnlMain"
-                 width="40.0" height="18.0" text="1/1" textColour="4288387995"
-                 bgColour="4278190080"/>
-      <Component type="ScriptSlider" id="Delay Feedbak" x="235.0" y="220.0" macroControl="Macro 1"
-                 max="127.0" stepSize="1.0" parentComponent="pnlMain" filmstripImage="{PROJECT_FOLDER}final-71.png"
+      <Component type="ScriptButton" id="delaySyncMode" x="203.0" y="303.0" width="60.0"
+                 height="19.0" parentComponent="pnlMain" text="Sync" numStrips="1.0"
+                 isPluginParameter="1"/>
+      <Component type="ScriptSlider" id="Delay Time" x="170.0" y="220.0" stepSize="1"
+                 max="3000" macroControl="No MacroControl" middlePosition="500.0"
+                 parentComponent="pnlMain" filmstripImage="{PROJECT_FOLDER}final-71.png"
                  numStrips="128.0" scaleFactor="0.2000000029802322" width="60.0"
-                 height="60.0" showTextBox="0"/>
+                 height="60.0" showTextBox="0" isPluginParameter="1" min="1"/>
+      <Component type="ScriptLabel" id="delayTimeValue" x="180.0" y="282.0" parentComponent="pnlMain"
+                 width="40.0" height="18.0" text="400 ms" textColour="4288387995"
+                 bgColour="4278190080"/>
+      <Component type="ScriptSlider" id="Delay Feedback" x="235.0" y="220.0" width="60.0"
+                 height="60.0" parentComponent="pnlMain" filmstripImage="{PROJECT_FOLDER}final-71.png"
+                 scaleFactor="0.2000000029802322" numStrips="128.0" showTextBox="0"
+                 isPluginParameter="1"/>
       <Component type="ScriptLabel" id="delayFeedbackValue" x="244.0" y="282.0"
                  parentComponent="pnlMain" width="40.0" height="18.0" text="0%"
                  textColour="4288387995" bgColour="4278190080"/>
@@ -52,7 +56,8 @@
                  pluginParameterName="Reverb Mix" processorId="Simple Reverb1"
                  parameterId="WetLevel" parentComponent="pnlMain" useUndoManager="1"
                  width="80.0" height="80.0" tooltip="Reverb Mix" filmstripImage="{PROJECT_FOLDER}final-71.png"
-                 numStrips="128.0" scaleFactor="0.2800000011920929" showTextBox="0"/>
+                 numStrips="128.0" scaleFactor="0.2800000011920929" showTextBox="0"
+                 isPluginParameter="1"/>
       <Component type="ScriptLabel" id="reverbMixValue" x="320.0" y="182.0" parentComponent="pnlMain"
                  width="50.0" height="18.0" text="0%" textColour="4288387995"
                  bgColour="4278190080"/>
@@ -60,7 +65,7 @@
                  filmstripImage="{PROJECT_FOLDER}final-71.png" scaleFactor="0.2800000011920929"
                  width="80.0" height="80.0" numStrips="128.0" processorId="Simple Reverb1"
                  parameterId="RoomSize" tooltip="Reverb Time" pluginParameterName="Reverb Time"
-                 middlePosition="0.75" showTextBox="0" defaultValue="0.75"/>
+                 middlePosition="0.75" showTextBox="0" defaultValue="0.75" isPluginParameter="1"/>
       <Component type="ScriptLabel" id="reverbTimeValue" x="320.0" y="302.0" text="2.6s"
                  parentComponent="pnlMain" width="50.0" height="18.0" textColour="4288387995"
                  bgColour="4278190080"/>
@@ -71,7 +76,7 @@
                  defaultValue="20000.0" filmstripImage="{PROJECT_FOLDER}final-71.png"
                  numStrips="128.0" scaleFactor="0.2800000011920929" height="80.0"
                  width="80.0" showTextBox="0" pluginParameterName="FIlter Freq"
-                 text="Filter Freq"/>
+                 text="Filter Freq" isPluginParameter="1"/>
       <Component type="ScriptLabel" id="filterFreqValue" x="418.0" y="182.0" parentComponent="pnlMain"
                  width="50.0" height="18.0" text="20.0kHz" textColour="4288387995"
                  bgColour="4278190080"/>
@@ -81,7 +86,7 @@
                  max="8.0" stepSize="0.1000000014901161" middlePosition="1.0"
                  filmstripImage="{PROJECT_FOLDER}final-71.png" scaleFactor="0.2800000011920929"
                  width="80.0" height="80.0" numStrips="128.0" defaultValue="1.0"
-                 showTextBox="0"/>
+                 showTextBox="0" isPluginParameter="1"/>
       <Component type="ScriptLabel" id="filterResValue" x="418.0" y="302.0" parentComponent="pnlMain"
                  width="50.0" height="18.0" text="1.0Q" textColour="4288387995"
                  bgColour="4278190080"/>
@@ -90,7 +95,7 @@
                  middlePosition="0.5" useUndoManager="1" tooltip="Phaser Depth"
                  parentComponent="pnlMain" filmstripImage="{PROJECT_FOLDER}final-71.png"
                  numStrips="128.0" scaleFactor="0.2800000011920929" height="86.0"
-                 width="86.0" showTextBox="0"/>
+                 width="86.0" showTextBox="0" isPluginParameter="1"/>
       <Component type="ScriptLabel" id="phaserDepthValue" x="515.0" y="182.0"
                  parentComponent="pnlMain" width="50.0" height="18.0" text="0%"
                  textColour="4288387995" bgColour="4278190080"/>
@@ -99,15 +104,16 @@
                  middlePosition="9.0" parentComponent="pnlMain" filmstripImage="{PROJECT_FOLDER}final-71.png"
                  numStrips="128.0" scaleFactor="0.2800000011920929" width="80.0"
                  height="80.0" showTextBox="0" pluginParameterName="Phaser Rate"
-                 defaultValue="1.0"/>
+                 isPluginParameter="1"/>
       <Component type="ScriptLabel" id="phaserRateValue" x="515.0" y="302.0" width="50.0"
-                 height="18.0" parentComponent="pnlMain" text="1/2D" textColour="4288387995"
+                 height="18.0" parentComponent="pnlMain" text="1/1" textColour="4288387995"
                  bgColour="4278190080"/>
       <Component type="ScriptSlider" id="Output Gain" x="755.0" y="60.0" width="10.0"
                  height="320.0" style="Vertical" middlePosition="0.5" processorId="container0"
                  parameterId="Gain" itemColour="1725553113" bgColour="1432642660"
                  macroControl="No MacroControl" pluginParameterName="Output Gain"
-                 mode="Decibel" parentComponent="pnlMain" defaultValue="1.0"/>
+                 mode="Decibel" parentComponent="pnlMain" defaultValue="1.0" isPluginParameter="1"
+                 showTextBox="0"/>
       <Component type="ScriptLabel" id="outputGainValue" x="755.0" y="382.0" width="35.0"
                  height="18.0" parentComponent="pnlMain" text="0.0dB" textColour="4288387995"
                  bgColour="4278190080"/>
@@ -126,7 +132,26 @@
       <Component type="ScriptPanel" id="aboutPanel" x="72.0" y="50.0" text=""
                  width="670.0" height="290.0" parentComponent="pnlMain" bgColour="4278190080"
                  opaque="1" itemColour="4026531840" itemColour2="4029821490" borderRadius="8.0"
-                 borderSize="10.0" visible="0.0"/>
+                 borderSize="10.0" visible="0.0">
+        <Component type="ScriptImage" id="aboutImage" x="0.0" y="0.0" width="670.0"
+                   height="290.0" parentComponent="aboutPanel" fileName="{PROJECT_FOLDER}KDED About Box1.0_1.png"/>
+        <Component type="ScriptButton" id="linkKsamplers" x="10.0" y="178.0" width="400.0"
+                   height="24.0" parentComponent="aboutPanel" text="K-Samplers"
+                   enableMidiLearn="0" isMomentary="1" itemColour2="4278190080"
+                   itemColour="2604613439" bgColour="4294967295" filmstripImage="{PROJECT_FOLDER}LinkKSMP.png"
+                   mouseCursor="PointingHandCursor"/>
+        <Component type="ScriptButton" id="linkKadabra" x="10.0" y="206.0" width="400.0"
+                   height="24.0" parentComponent="aboutPanel" text="Kadabra" isMomentary="1"
+                   enableMidiLearn="0" bgColour="4294967295" filmstripImage="{PROJECT_FOLDER}LinkKDBR.png"
+                   mouseCursor="PointingHandCursor"/>
+        <Component type="ScriptButton" id="linkTribalTools" x="10.0" y="237.0" width="400.0"
+                   height="24.0" parentComponent="aboutPanel" text="TribalTools"
+                   isMomentary="1" enableMidiLearn="0" bgColour="4294967295" filmstripImage="{PROJECT_FOLDER}LinkTTLS.png"
+                   mouseCursor="PointingHandCursor"/>
+        <Component type="ScriptButton" id="linkGithub" x="558.0" y="40.0" width="100.0"
+                   height="70.0" parentComponent="aboutPanel" isMomentary="1" enableMidiLearn="0"
+                   bgColour="4294967295" mouseCursor="PointingHandCursor" filmstripImage="{PROJECT_FOLDER}LinkKGIT.png"/>
+      </Component>
       <Component type="ScriptButton" id="aboutButton" x="677.0" y="10.0" parentComponent="pnlMain"
                  width="50.0" text="About" enableMidiLearn="0" filmstripImage="{PROJECT_FOLDER}aboutBtn2.png"/>
       <Component type="ScriptButton" id="presetsButton" x="71.0" y="10.0" width="50.0"
@@ -136,5 +161,5 @@
   <Component type="ScriptFloatingTile" id="presetsManager" x="72.0" y="50.0"
              ContentType="PresetBrowser" bgColour="4278190080" itemColour="4294967295"
              itemColour2="0" Data="{&#10;  &quot;ShowSaveButton&quot;: true,&#10;  &quot;ShowExpansionsAsColumn&quot;: false,&#10;  &quot;ShowFolderButton&quot;: true,&#10;  &quot;ShowNotes&quot;: true,&#10;  &quot;ShowEditButtons&quot;: true,&#10;  &quot;EditButtonOffset&quot;: 10,&#10;  &quot;ShowAddButton&quot;: true,&#10;  &quot;ShowRenameButton&quot;: true,&#10;  &quot;ShowDeleteButton&quot;: true,&#10;  &quot;ShowSearchBar&quot;: true,&#10;  &quot;FavoriteIconOffset&quot;: 0,&#10;  &quot;ShowFavoriteIcon&quot;: true,&#10;  &quot;FullPathFavorites&quot;: false,&#10;  &quot;ButtonsInsideBorder&quot;: false,&#10;  &quot;NumColumns&quot;: 3,&#10;  &quot;ColumnWidthRatio&quot;: [&#10;    0.3333333333333333,&#10;    0.3333333333333333,&#10;    0.3333333333333333&#10;  ],&#10;  &quot;ListAreaOffset&quot;: [&#10;    0,&#10;    0,&#10;    0,&#10;    0&#10;  ],&#10;  &quot;ColumnRowPadding&quot;: [&#10;    0,&#10;    0,&#10;    0,&#10;    0&#10;  ],&#10;  &quot;SearchBarBounds&quot;: [],&#10;  &quot;MoreButtonBounds&quot;: [],&#10;  &quot;SaveButtonBounds&quot;: [],&#10;  &quot;FavoriteButtonBounds&quot;: []&#10;}"
-             width="670.0" height="290.0" visible="0.0"/>
+             width="670.0" height="290.0" visible="0"/>
 </ContentProperties>

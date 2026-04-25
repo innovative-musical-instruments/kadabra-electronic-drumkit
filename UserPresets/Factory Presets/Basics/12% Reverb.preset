@@ -5,10 +5,10 @@
     <Control type="ScriptSlider" id="Saturation" value="0.0"/>
     <Control type="ScriptSlider" id="Brightness" value="2.682209014892578e-7"/>
     <Control type="ScriptSlider" id="Delay Mix" value="0.0"/>
-    <Control type="ScriptButton" id="delaySyncMode" value="0.0"/>
-    <Control type="ScriptSlider" id="Delay Time" value="400.0"/>
-    <Control type="ScriptSlider" id="Delay Feedback" value="0.0"/>
-    <Control type="ScriptSlider" id="Reverb Mix" value="0.0"/>
+    <Control type="ScriptButton" id="delaySyncMode" value="1.0"/>
+    <Control type="ScriptSlider" id="Delay Time" value="7.0"/>
+    <Control type="ScriptSlider" id="Delay Feedback" value="0.5"/>
+    <Control type="ScriptSlider" id="Reverb Mix" value="0.119999997317791"/>
     <Control type="ScriptSlider" id="Reverb Time" value="0.75"/>
     <Control type="ScriptSlider" id="Fliter Freq" value="20000.0"/>
     <Control type="ScriptSlider" id="Filter Res" value="1.0"/>

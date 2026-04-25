@@ -35,36 +35,9 @@ delayMixBroadcaster.addComponentPropertyListener(["delayMixValue"], ["text"], "D
 // tempoNames array for TempoSync knobs
 const var tempoNames = ["1/1","1/2D","1/2","1/2T","1/4D","1/4","1/4T",
                         "1/8D","1/8","1/8T","1/16D","1/16","1/16T",
-                        "1/32D","1/32","1/32T","1/64D","1/64"];
+                        "1/32D","1/32","1/32T","1/64D","1/64","1/64T"];
 
-// Delay Time Broadcaster
-const var delayTimeBroadcaster = Engine.createBroadcaster({
-  "id": "delayTimeBroadcaster",
-  "args": ["component", "value"],
-  "tags": []
-});
-// attach to event Type
-delayTimeBroadcaster.attachToComponentValue(["Delay Time"], "");
-// attach first listener
-delayTimeBroadcaster.addComponentPropertyListener(["delayTimeValue"], ["text"], "DelayTimeValue", function(index, component, value){
-    var step = Math.round(value / 127 * 17);
-    if (step < 0) step = 0;
-    if (step > 17) step = 17;
-    return tempoNames[step];
-});
 
-// Delay Feedbak Broadcaster
-const var delayFeedbakBroadcaster = Engine.createBroadcaster({
-  "id": "delayFeedbakBroadcaster",
-  "args": ["component", "value"],
-  "tags": []
-});
-// attach to event Type
-delayFeedbakBroadcaster.attachToComponentValue(["Delay Feedbak"], "");
-// attach first listener
-delayFeedbakBroadcaster.addComponentPropertyListener(["delayFeedbackValue"], ["text"], "DelayFeedbakValue", function(index, component, value){
-	return Math.round(value / 127 * 100) + "%";
-});
 // Reverb Mix Broadcaster
 const var reverbMixBroadcaster = Engine.createBroadcaster({
   "id": "reverbMixBroadcaster",
@@ -134,15 +107,19 @@ const var phaserRateBroadcaster = Engine.createBroadcaster({
   "args": ["component", "value"],
   "tags": []
 });
-// attach to event Type
 phaserRateBroadcaster.attachToComponentValue(["Phaser Rate"], "");
-// attach first listener
-phaserRateBroadcaster.addComponentPropertyListener(["phaserRateValue"], ["text"], "PhaserRateValue", function(index, component, value){
-	var step = Math.round(value / 18 * 17);
-	if (step < 0) step = 0;
-	if (step > 17) step = 17;
-	return tempoNames[step];
-});
+phaserRateBroadcaster.addComponentPropertyListener(
+    ["phaserRateValue"], 
+    ["text"], 
+    "PhaserRateValue", 
+    function(index, component, value)
+    {
+        var idx = Math.round(value);
+        if (idx < 0) idx = 0;
+        if (idx > 18) idx = 18;
+        return tempoNames[idx];
+    }
+);
 
 // Output Gain Broadcaster
 const var outputGainBroadcaster = Engine.createBroadcaster({
@@ -184,7 +161,147 @@ inline function onPresetsButtonControl(component, value)
 
 presetsButton.setControlCallback(onPresetsButtonControl);
 aboutButton.setControlCallback(onAboutButtonControl);
-function onNoteOn()
+
+// --- Delay section ---
+const var DelayTimeKnob = Content.getComponent("Delay Time");
+const var DelayFeedbackKnob = Content.getComponent("Delay Feedback");
+const var DelaySyncMode = Content.getComponent("delaySyncMode");
+const var Delay1 = Synth.getEffect("Delay1");
+
+// L/R mirror: Delay Time
+inline function onDelayTimeControl(component, value)
+{
+    Delay1.setAttribute(0, value); // DelayTimeLeft
+    Delay1.setAttribute(1, value); // DelayTimeRight
+}
+DelayTimeKnob.setControlCallback(onDelayTimeControl);
+
+// L/R mirror: Delay Feedback
+inline function onDelayFeedbackControl(component, value)
+{
+    Delay1.setAttribute(2, value); // FeedbackLeft
+    Delay1.setAttribute(3, value); // FeedbackRight
+}
+DelayFeedbackKnob.setControlCallback(onDelayFeedbackControl);
+
+// Sync/Free mode toggle
+inline function onDelaySyncModeControl(component, value)
+{
+    // value: 0 = Free (LED off), 1 = Sync (LED on) — matches HISE TempoSync polarity
+    Delay1.setAttribute(7, value);
+    
+    if (value == 1) // Sync mode
+    {
+        DelayTimeKnob.set("min", 0);
+        DelayTimeKnob.set("max", 18);
+        DelayTimeKnob.set("middlePosition", 9);   // linear across divisions
+        DelayTimeKnob.set("stepSize", 1);
+        DelayTimeKnob.setValue(8); // default 1/8
+    }
+    else // Free mode
+    {
+        DelayTimeKnob.set("min", 1);
+        DelayTimeKnob.set("max", 3000);
+        DelayTimeKnob.set("middlePosition", 500); // 50% → 500 ms
+        DelayTimeKnob.set("stepSize", 1);
+        DelayTimeKnob.setValue(400); // default 400ms
+    }
+    
+    // push the new value through so audio updates immediately
+    Delay1.setAttribute(0, DelayTimeKnob.getValue());
+    Delay1.setAttribute(1, DelayTimeKnob.getValue());
+}
+DelaySyncMode.setControlCallback(onDelaySyncModeControl);
+
+// Initialize knob range based on current sync state (handles plugin load / preset recall)
+if (DelaySyncMode.getValue() == 1)
+{
+    DelayTimeKnob.set("min", 0);
+    DelayTimeKnob.set("max", 18);
+    DelayTimeKnob.set("middlePosition", 9);
+    DelayTimeKnob.set("stepSize", 1);
+}
+else
+{
+    DelayTimeKnob.set("min", 1);
+    DelayTimeKnob.set("max", 3000);
+    DelayTimeKnob.set("middlePosition", 500);
+    DelayTimeKnob.set("stepSize", 1);
+}
+
+// Delay Feedback label broadcaster
+const var delayFeedbackBroadcaster = Engine.createBroadcaster({
+    "id": "delayFeedbackBroadcaster",
+    "args": ["component", "value"],
+    "tags": []
+});
+delayFeedbackBroadcaster.attachToComponentValue(["Delay Feedback"], "");
+delayFeedbackBroadcaster.addComponentPropertyListener(
+    ["delayFeedbackValue"], 
+    ["text"], 
+    "DelayFeedbackValue", 
+    function(index, component, value)
+    {
+        return Math.round(value * 100) + "%";
+    }
+);
+
+// Delay Time label broadcaster (mode-aware)
+const var delayTimeBroadcaster = Engine.createBroadcaster({
+    "id": "delayTimeBroadcaster",
+    "args": ["component", "value"],
+    "tags": []
+});
+delayTimeBroadcaster.attachToComponentValue(["Delay Time"], "");
+delayTimeBroadcaster.addComponentPropertyListener(
+    ["delayTimeValue"], 
+    ["text"], 
+    "DelayTimeValue", 
+    function(index, component, value)
+    {
+        if (DelaySyncMode.getValue() == 1) // Sync mode
+        {
+            var idx = Math.round(value);
+            if (idx < 0) idx = 0;
+            if (idx > 18) idx = 18;
+            return tempoNames[idx];
+        }
+        else // Free mode
+        {
+            return Math.round(value) + " ms";
+        }
+    }
+);
+// --- About screen links ---
+const var linkKsamplers = Content.getComponent("linkKsamplers");
+const var linkKadabra = Content.getComponent("linkKadabra");
+const var linkTribalTools = Content.getComponent("linkTribalTools");
+const var linkGithub = Content.getComponent("linkGithub");
+
+inline function onLinkKsamplersControl(component, value)
+{
+    if (value) Engine.openWebsite("https://www.innovativemusicalinstruments.com/ksamplers");
+}
+linkKsamplers.setControlCallback(onLinkKsamplersControl);
+
+inline function onLinkKadabraControl(component, value)
+{
+    if (value) Engine.openWebsite("https://www.kadabra.net");
+}
+linkKadabra.setControlCallback(onLinkKadabraControl);
+
+inline function onLinkTribalToolsControl(component, value)
+{
+    if (value) Engine.openWebsite("https://www.tribal-tools.com");
+}
+linkTribalTools.setControlCallback(onLinkTribalToolsControl);
+
+inline function onLinkGithubControl(component, value)
+{
+    if (value) Engine.openWebsite("https://github.com/innovative-musical-instruments/kadabra-electronic-drumkit");
+}
+linkGithub.setControlCallback(onLinkGithubControl);
+        function onNoteOn()
 {
 	
 }

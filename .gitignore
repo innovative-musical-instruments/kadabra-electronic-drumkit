@@ -9,6 +9,8 @@ Builds/
 # HISE autosaves
 Presets/Autosave_*.hip
 Presets/*_Recovered.xml
+Presets/Autosave_*.xml
+Presets/*.hip
 
 # HISE compiled caches (auto-regenerated)
 PooledResources/
@@ -23,6 +25,10 @@ XmlPresetBackups/IMI Instrument BaseProject*
 Scripts/ScriptProcessors/IMIInstrumentBaseProject/
 Scripts/ScriptProcessors/KDBR_EDFilmstripping1/
 Scripts/ScriptProcessors/KEDK_GUI_MACRO_OK1/
+Scripts/ScriptProcessors/KEDK_DelayFixPart1/
+Scripts/ScriptProcessors/KEDK_DelayFixPart2/
+XmlPresetBackups/KEDK_DelayFixPart1*
+XmlPresetBackups/KEDK_DelayFixPart2*
 
 # macOS system files
 .DS_Store
