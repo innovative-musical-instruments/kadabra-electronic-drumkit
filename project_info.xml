@@ -12,10 +12,10 @@
   <AdditionalDspLibraries value=""/>
   <OSXStaticLibs value=""/>
   <WindowsStaticLibFolder value=""/>
-  <ExtraDefinitionsWindows value=""/>
-  <ExtraDefinitionsOSX value=""/>
-  <ExtraDefinitionsIOS value=""/>
-  <ExtraDefinitionsLinux value=""/>
+  <ExtraDefinitionsWindows value="HISE_USE_EXTENDED_TEMPO_VALUES=1&#10;HISE_MAX_DELAY_TIME_SAMPLES=524288"/>
+  <ExtraDefinitionsOSX value="HISE_USE_EXTENDED_TEMPO_VALUES=1&#10;HISE_MAX_DELAY_TIME_SAMPLES=524288"/>
+  <ExtraDefinitionsIOS value="HISE_USE_EXTENDED_TEMPO_VALUES=1&#10;HISE_MAX_DELAY_TIME_SAMPLES=524288"/>
+  <ExtraDefinitionsLinux value="HISE_USE_EXTENDED_TEMPO_VALUES=1&#10;HISE_MAX_DELAY_TIME_SAMPLES=524288"/>
   <ExtraDefinitionsNetworkDll value=""/>
   <AppGroupID value=""/>
   <RedirectSampleFolder value=""/>

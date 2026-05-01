@@ -6,7 +6,7 @@
     <Control type="ScriptSlider" id="Brightness" value="2.682209014892578e-7"/>
     <Control type="ScriptSlider" id="Delay Mix" value="0.0"/>
     <Control type="ScriptButton" id="delaySyncMode" value="0.0"/>
-    <Control type="ScriptSlider" id="Delay Time" value="400.0"/>
+    <Control type="ScriptSlider" id="Delay Time" value="1.0"/>
     <Control type="ScriptSlider" id="Delay Feedback" value="0.0"/>
     <Control type="ScriptSlider" id="Reverb Mix" value="0.0"/>
     <Control type="ScriptSlider" id="Reverb Time" value="0.75"/>

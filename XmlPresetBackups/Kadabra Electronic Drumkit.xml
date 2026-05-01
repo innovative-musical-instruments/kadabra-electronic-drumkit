@@ -12,15 +12,15 @@
             <Control type="ScriptSlider" id="Saturation" value="0.0"/>
             <Control type="ScriptSlider" id="Brightness" value="2.682209014892578e-7"/>
             <Control type="ScriptSlider" id="Delay Mix" value="0.0"/>
-            <Control type="ScriptButton" id="delaySyncMode" value="0.0"/>
-            <Control type="ScriptSlider" id="Delay Time" value="400.0"/>
+            <Control type="ScriptButton" id="delaySyncMode" value="1.0"/>
+            <Control type="ScriptSlider" id="Delay Time" value="0.0"/>
             <Control type="ScriptSlider" id="Delay Feedback" value="0.0"/>
             <Control type="ScriptSlider" id="Reverb Mix" value="0.0"/>
             <Control type="ScriptSlider" id="Reverb Time" value="0.75"/>
             <Control type="ScriptSlider" id="Fliter Freq" value="20000.0"/>
             <Control type="ScriptSlider" id="Filter Res" value="1.0"/>
             <Control type="ScriptSlider" id="Phaser Depth" value="0.0"/>
-            <Control type="ScriptSlider" id="Phaser Rate" value="0.0"/>
+            <Control type="ScriptSlider" id="Phaser Rate" value="7.0"/>
             <Control type="ScriptSlider" id="Output Gain" value="1.0"/>
             <Control type="ScriptButton" id="linkKsamplers" value="0.0"/>
             <Control type="ScriptButton" id="linkKadabra" value="0.0"/>
@@ -42,7 +42,8 @@
     <Processor Type="EffectChain" ID="FX" Bypassed="0">
       <ChildProcessors>
         <Processor Type="PolyphonicFilter" ID="FilterOut" Bypassed="0" Gain="0.0"
-                   Frequency="20000.0" Q="1.0" Mode="8.0" Quality="2.94276e7" BipolarIntensity="0.0">
+                   Frequency="20000.0" Q="1.0" Mode="8.0" Quality="4.1968048e8"
+                   BipolarIntensity="0.0">
           <ChildProcessors>
             <Processor Type="ModulatorChain" ID="Frequency Modulation" Bypassed="0"
                        Intensity="1.0">
@@ -62,7 +63,7 @@
         </Processor>
         <Processor Type="PolyphonicFilter" ID="Brightness" Bypassed="0" Gain="2.682209014892578e-7"
                    Frequency="4504.78662109375" Q="0.4182196259498596" Mode="3.0"
-                   Quality="0.0" BipolarIntensity="0.0">
+                   Quality="-5.70425344e8" BipolarIntensity="0.0">
           <ChildProcessors>
             <Processor Type="ModulatorChain" ID="Frequency Modulation" Bypassed="0"
                        Intensity="1.0">
@@ -111,9 +112,9 @@
               </ChildProcessors>
               <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
             </Processor>
-            <Processor Type="Delay" ID="Delay1" Bypassed="0" DelayTimeLeft="400.0" DelayTimeRight="400.0"
+            <Processor Type="Delay" ID="Delay1" Bypassed="0" DelayTimeLeft="5.0" DelayTimeRight="5.0"
                        FeedbackLeft="0.0" FeedbackRight="0.0" LowPassFreq="20000.0"
-                       HiPassFreq="40.0" Mix="0.0" TempoSync="0.0">
+                       HiPassFreq="40.0" Mix="0.0" TempoSync="1.0">
               <ChildProcessors/>
               <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
             </Processor>
@@ -129,7 +130,7 @@
                 <Processor Type="ModulatorChain" ID="Phase Modulation" Bypassed="0" Intensity="1.0">
                   <ChildProcessors>
                     <Processor Type="LFO" ID="LFO Modulator1" Bypassed="0" Intensity="1.0" ModulationMode="0"
-                               Frequency="0.0" FadeIn="791.0" WaveformType="1.0" Legato="1.0"
+                               Frequency="7.0" FadeIn="791.0" WaveformType="1.0" Legato="1.0"
                                TempoSync="1.0" SmoothingTime="1.070938229560852" LoopEnabled="1.0"
                                PhaseOffset="0.0" SyncToMasterClock="0.0" IgnoreNoteOn="0.0"
                                CustomWaveform="" StepData="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+.">
@@ -212,6 +213,15 @@
     <macro name="Macro 7" value="0.0" midi_cc="-1"/>
     <macro name="Macro 8" value="0.0" midi_cc="-1"/>
   </macro_controls>
-  <MidiAutomation/>
+  <MidiAutomation>
+    <Controller Controller="24" Channel="-1" Processor="Interface" MacroIndex="-1"
+                Start="0.0" End="1.0" FullStart="0.0" FullEnd="1.0" Skew="2.409420839653209"
+                Interval="0.01" Converter="37.nT6K8CBGgC..VEFa0U1Pu4lckIGckIG.ADPXiQWZ1UF.ADf..."
+                Attribute="Reverb Time" Inverted="0"/>
+    <Controller Controller="25" Channel="-1" Processor="Interface" MacroIndex="-1"
+                Start="0.0" End="1.0" FullStart="0.0" FullEnd="1.0" Skew="1.0"
+                Interval="0.01" Converter="37.nT6K8CBGgC..VEFa0U1Pu4lckIGckIG.ADPXiQWZ1UF.ADf..."
+                Attribute="Reverb Mix" Inverted="0"/>
+  </MidiAutomation>
   <MPEData Enabled="0"/>
 </Processor>

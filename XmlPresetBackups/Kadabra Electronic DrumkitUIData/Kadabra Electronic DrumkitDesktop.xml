@@ -38,12 +38,12 @@
                  height="19.0" parentComponent="pnlMain" text="Sync" numStrips="1.0"
                  isPluginParameter="1"/>
       <Component type="ScriptSlider" id="Delay Time" x="170.0" y="220.0" stepSize="1"
-                 max="3000" macroControl="No MacroControl" middlePosition="500.0"
+                 max="18" macroControl="No MacroControl" middlePosition="9.0"
                  parentComponent="pnlMain" filmstripImage="{PROJECT_FOLDER}final-71.png"
                  numStrips="128.0" scaleFactor="0.2000000029802322" width="60.0"
-                 height="60.0" showTextBox="0" isPluginParameter="1" min="1"/>
+                 height="60.0" showTextBox="0" isPluginParameter="1"/>
       <Component type="ScriptLabel" id="delayTimeValue" x="180.0" y="282.0" parentComponent="pnlMain"
-                 width="40.0" height="18.0" text="400 ms" textColour="4288387995"
+                 width="40.0" height="18.0" text="1/1" textColour="4288387995"
                  bgColour="4278190080"/>
       <Component type="ScriptSlider" id="Delay Feedback" x="235.0" y="220.0" width="60.0"
                  height="60.0" parentComponent="pnlMain" filmstripImage="{PROJECT_FOLDER}final-71.png"
@@ -99,14 +99,13 @@
       <Component type="ScriptLabel" id="phaserDepthValue" x="515.0" y="182.0"
                  parentComponent="pnlMain" width="50.0" height="18.0" text="0%"
                  textColour="4288387995" bgColour="4278190080"/>
-      <Component type="ScriptSlider" id="Phaser Rate" x="497.0" y="220.0" processorId="LFO Modulator1"
-                 parameterId="Frequency" mode="TempoSync" max="18.0" stepSize="1.0"
-                 middlePosition="9.0" parentComponent="pnlMain" filmstripImage="{PROJECT_FOLDER}final-71.png"
-                 numStrips="128.0" scaleFactor="0.2800000011920929" width="80.0"
-                 height="80.0" showTextBox="0" pluginParameterName="Phaser Rate"
-                 isPluginParameter="1"/>
+      <Component type="ScriptSlider" id="Phaser Rate" x="497.0" y="220.0" mode="TempoSync"
+                 max="20.0" stepSize="1.0" middlePosition="9.0" parentComponent="pnlMain"
+                 filmstripImage="{PROJECT_FOLDER}final-71.png" numStrips="128.0"
+                 scaleFactor="0.2800000011920929" width="80.0" height="80.0" showTextBox="0"
+                 pluginParameterName="Phaser Rate" isPluginParameter="1"/>
       <Component type="ScriptLabel" id="phaserRateValue" x="515.0" y="302.0" width="50.0"
-                 height="18.0" parentComponent="pnlMain" text="1/1" textColour="4288387995"
+                 height="18.0" parentComponent="pnlMain" text="1/2" textColour="4288387995"
                  bgColour="4278190080"/>
       <Component type="ScriptSlider" id="Output Gain" x="755.0" y="60.0" width="10.0"
                  height="320.0" style="Vertical" middlePosition="0.5" processorId="container0"

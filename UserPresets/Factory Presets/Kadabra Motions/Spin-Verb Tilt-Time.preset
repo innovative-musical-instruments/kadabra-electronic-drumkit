@@ -5,8 +5,9 @@
     <Control type="ScriptSlider" id="Saturation" value="0.0"/>
     <Control type="ScriptSlider" id="Brightness" value="0.1000002697110176"/>
     <Control type="ScriptSlider" id="Delay Mix" value="0.0"/>
+    <Control type="ScriptButton" id="delaySyncMode" value="0.0"/>
     <Control type="ScriptSlider" id="Delay Time" value="0.0"/>
-    <Control type="ScriptSlider" id="Delay Feedbak" value="0.0"/>
+    <Control type="ScriptSlider" id="Delay Feedback" value="0.0"/>
     <Control type="ScriptSlider" id="Reverb Mix" value="0.0"/>
     <Control type="ScriptSlider" id="Reverb Time" value="0.75"/>
     <Control type="ScriptSlider" id="Fliter Freq" value="20000.0"/>
@@ -14,6 +15,10 @@
     <Control type="ScriptSlider" id="Phaser Depth" value="0.0"/>
     <Control type="ScriptSlider" id="Phaser Rate" value="1.0"/>
     <Control type="ScriptSlider" id="Output Gain" value="1.0"/>
+    <Control type="ScriptButton" id="linkKsamplers" value="0.0"/>
+    <Control type="ScriptButton" id="linkKadabra" value="0.0"/>
+    <Control type="ScriptButton" id="linkTribalTools" value="0.0"/>
+    <Control type="ScriptButton" id="linkGithub" value="0.0"/>
     <Control type="ScriptButton" id="aboutButton" value="0"/>
     <Control type="ScriptButton" id="presetsButton" value="1.0"/>
   </Content>

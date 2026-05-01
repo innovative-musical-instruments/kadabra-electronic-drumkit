@@ -36,7 +36,10 @@ delayMixBroadcaster.addComponentPropertyListener(["delayMixValue"], ["text"], "D
 const var tempoNames = ["1/1","1/2D","1/2","1/2T","1/4D","1/4","1/4T",
                         "1/8D","1/8","1/8T","1/16D","1/16","1/16T",
                         "1/32D","1/32","1/32T","1/64D","1/64","1/64T"];
-
+const var phaserTempoNames = ["8/1","6/1","4/1","3/1","2/1",
+                              "1/1","1/2D","1/2","1/2T","1/4D","1/4","1/4T",
+                              "1/8D","1/8","1/8T","1/16D","1/16","1/16T",
+                              "1/32D","1/32","1/32T"];
 
 // Reverb Mix Broadcaster
 const var reverbMixBroadcaster = Engine.createBroadcaster({
@@ -101,6 +104,17 @@ phaserDepthBroadcaster.attachToComponentValue(["Phaser Depth"], "");
 phaserDepthBroadcaster.addComponentPropertyListener(["phaserDepthValue"], ["text"], "PhaserDepthValue", function(index, component, value){
 	return Engine.doubleToString(value * 100, 0) + "%";
 });
+// --- Phaser Rate section ---
+const var PhaserRateKnob = Content.getComponent("Phaser Rate");
+const var Phaser1LFO = Synth.getModulator("LFO Modulator1");
+
+// Apply tempo-table offset so knob index 0 = "4/1", index 21 = "1/64T"
+inline function onPhaserRateControl(component, value)
+{
+    Phaser1LFO.setAttribute(Phaser1LFO.getAttributeIndex("Frequency"), value);
+}
+PhaserRateKnob.setControlCallback(onPhaserRateControl);
+
 // Phaser Rate Broadcaster
 const var phaserRateBroadcaster = Engine.createBroadcaster({
   "id": "phaserRateBroadcaster",
@@ -116,8 +130,8 @@ phaserRateBroadcaster.addComponentPropertyListener(
     {
         var idx = Math.round(value);
         if (idx < 0) idx = 0;
-        if (idx > 18) idx = 18;
-        return tempoNames[idx];
+        if (idx > 21) idx = 21;
+        return phaserTempoNames[idx];
     }
 );
 
@@ -167,12 +181,17 @@ const var DelayTimeKnob = Content.getComponent("Delay Time");
 const var DelayFeedbackKnob = Content.getComponent("Delay Feedback");
 const var DelaySyncMode = Content.getComponent("delaySyncMode");
 const var Delay1 = Synth.getEffect("Delay1");
+const var SYNC_OFFSET = 5; // HISE_USE_EXTENDED_TEMPO_VALUES adds 5 slow values before "1/1";
 
 // L/R mirror: Delay Time
 inline function onDelayTimeControl(component, value)
 {
-    Delay1.setAttribute(0, value); // DelayTimeLeft
-    Delay1.setAttribute(1, value); // DelayTimeRight
+    local sendValue = value;
+    if (DelaySyncMode.getValue() == 1) // Sync mode — offset into extended tempo table
+        sendValue = value + SYNC_OFFSET;
+    
+    Delay1.setAttribute(0, sendValue); // DelayTimeLeft
+    Delay1.setAttribute(1, sendValue); // DelayTimeRight
 }
 DelayTimeKnob.setControlCallback(onDelayTimeControl);
 
@@ -201,15 +220,19 @@ inline function onDelaySyncModeControl(component, value)
     else // Free mode
     {
         DelayTimeKnob.set("min", 1);
-        DelayTimeKnob.set("max", 3000);
+        DelayTimeKnob.set("max", 2500);
         DelayTimeKnob.set("middlePosition", 500); // 50% → 500 ms
         DelayTimeKnob.set("stepSize", 1);
         DelayTimeKnob.setValue(400); // default 400ms
     }
     
     // push the new value through so audio updates immediately
-    Delay1.setAttribute(0, DelayTimeKnob.getValue());
-    Delay1.setAttribute(1, DelayTimeKnob.getValue());
+local pushValue = DelayTimeKnob.getValue();
+if (value == 1) // Sync mode
+    pushValue = pushValue + SYNC_OFFSET;
+
+Delay1.setAttribute(0, pushValue);
+Delay1.setAttribute(1, pushValue);
 }
 DelaySyncMode.setControlCallback(onDelaySyncModeControl);
 
@@ -224,7 +247,7 @@ if (DelaySyncMode.getValue() == 1)
 else
 {
     DelayTimeKnob.set("min", 1);
-    DelayTimeKnob.set("max", 3000);
+    DelayTimeKnob.set("max", 2500);
     DelayTimeKnob.set("middlePosition", 500);
     DelayTimeKnob.set("stepSize", 1);
 }
