@@ -145,8 +145,8 @@ const var outputGainBroadcaster = Engine.createBroadcaster({
 outputGainBroadcaster.attachToComponentValue(["Output Gain"], "");
 // attach first listener
 outputGainBroadcaster.addComponentPropertyListener(["outputGainValue"], ["text"], "OutputGainValue", function(index, component, value){
-	if (value <= 0.0) return "-inf dB";
-	return Engine.doubleToString(Engine.getDecibelsForGainFactor(value), 1) + "dB";
+    if (value <= -100.0) return "-inf dB";
+    return Engine.doubleToString(value, 1) + "dB";
 });
 const var presetsButton = Content.getComponent("presetsButton");
 const var presetsManager = Content.getComponent("presetsManager");
@@ -324,7 +324,103 @@ inline function onLinkGithubControl(component, value)
     if (value) Engine.openWebsite("https://github.com/innovative-musical-instruments/kadabra-electronic-drumkit");
 }
 linkGithub.setControlCallback(onLinkGithubControl);
-        function onNoteOn()
+
+// =========================================================================
+// Clip LED system — production
+// L/R indexed pattern matches Delay rework convention
+// =========================================================================
+
+const var clipLedL = Content.getComponent("clipLedL");
+const var clipLedR = Content.getComponent("clipLedR");
+
+const var CLIP_OFF_COLOUR = 0xFF330000; // dim red, idle
+const var CLIP_ON_COLOUR  = 0xFFFF2222; // hot red, clipped
+const var CLIP_HIGHLIGHT  = 0x99FFAAAA; // glassy strip when on
+
+const var CLIP_THRESHOLD  = 0.989;      // ~ -0.1 dBFS
+const var CLIP_HOLD_MS    = 5000;       // auto-release after 1.5s
+const var CLICK_GUARD_MS  = 250;        // re-latch suppression after click
+
+reg clipState    = [false, false];
+reg lastClipMs   = [0.0,   0.0];
+reg clickResetMs = [0.0,   0.0];
+
+// --- Paint ---
+clipLedL.setPaintRoutine(function(g)
+{
+    local w = this.getWidth();
+    local h = this.getHeight();
+    g.setColour(clipState[0] ? CLIP_ON_COLOUR : CLIP_OFF_COLOUR);
+    g.fillRect([0, 0, w, h]);
+
+    if (clipState[0])
+    {
+        g.setColour(CLIP_HIGHLIGHT);
+        g.fillRect([0, 0, w, h / 3]);
+    }
+});
+
+clipLedR.setPaintRoutine(function(g)
+{
+    local w = this.getWidth();
+    local h = this.getHeight();
+    g.setColour(clipState[1] ? CLIP_ON_COLOUR : CLIP_OFF_COLOUR);
+    g.fillRect([0, 0, w, h]);
+
+    if (clipState[1])
+    {
+        g.setColour(CLIP_HIGHLIGHT);
+        g.fillRect([0, 0, w, h / 3]);
+    }
+});
+
+// --- Click to reset ---
+clipLedL.setMouseCallback(function(event)
+{
+    clipState[0] = false;
+    clickResetMs[0] = Engine.getUptime() * 1000;
+    clipLedL.repaint();
+});
+
+clipLedR.setMouseCallback(function(event)
+{
+    clipState[1] = false;
+    clickResetMs[1] = Engine.getUptime() * 1000;
+    clipLedR.repaint();
+});
+
+// --- Polling timer ---
+const var clipTimer = Engine.createTimerObject();
+
+clipTimer.setTimerCallback(function()
+{
+    local now = Engine.getUptime() * 1000;
+
+    local pL = Globals.peakL;
+    local pR = Globals.peakR;
+
+    local newL = clipState[0];
+    local newR = clipState[1];
+
+    if (now - clickResetMs[0] > CLICK_GUARD_MS)
+    {
+        if (pL >= CLIP_THRESHOLD) { newL = true;  lastClipMs[0] = now; }
+        else if (clipState[0] && (now - lastClipMs[0] > CLIP_HOLD_MS)) newL = false;
+    }
+
+    if (now - clickResetMs[1] > CLICK_GUARD_MS)
+    {
+        if (pR >= CLIP_THRESHOLD) { newR = true;  lastClipMs[1] = now; }
+        else if (clipState[1] && (now - lastClipMs[1] > CLIP_HOLD_MS)) newR = false;
+    }
+
+    if (newL != clipState[0]) { clipState[0] = newL; clipLedL.repaint(); }
+    if (newR != clipState[1]) { clipState[1] = newR; clipLedR.repaint(); }
+});
+
+clipTimer.startTimer(30);
+
+function onNoteOn()
 {
 	
 }
