@@ -148,8 +148,8 @@
                  parentComponent="pnlMain"/>
       <Component type="ScriptSlider" id="Output Gain" x="745" y="74" width="20"
                  height="306" parentComponent="pnlMain" pluginParameterName="Output Gain"
-                 mode="Decibel" min="-100.0" max="0.0" stepSize="0.1" suffix=" dB"
-                 middlePosition="-18.0" numStrips="256" filmstripImage="{PROJECT_FOLDER}Kadabra_Output_Fader_filmstrip256f.png"
+                 mode="Decibel" min="-100.0" max="0.0" stepSize="0.1000000014901161"
+                 suffix=" dB" middlePosition="-18.0" numStrips="256.0" filmstripImage="{PROJECT_FOLDER}Kadabra_Output_Fader_filmstrip256f.png"
                  processorId="Simple Gain" parameterId="Gain" defaultValue="-6.0"/>
     </Component>
   </Component>

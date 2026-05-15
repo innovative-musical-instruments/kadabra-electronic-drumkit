@@ -420,6 +420,42 @@ clipTimer.setTimerCallback(function()
 
 clipTimer.startTimer(30);
 
+// --- Sample folder auto-setup ---
+inline function setupSampleFolder()
+{
+    // Determine platform link file name
+    local linkFileName;
+    local os = Engine.getOS();
+    if (os == "OSX") linkFileName = "LinkOSX";
+    else if (os == "WIN") linkFileName = "LinkWindows";
+    else linkFileName = "LinkLinux";
+    
+    // Get app data folder (Application Support/IMI/Kadabra Electronic Drumkit)
+    local appData = FileSystem.getFolder(FileSystem.AppData);
+    local linkFile = appData.getChildFile(linkFileName);
+    
+    // Build expected standard samples path for this user
+    local userHome = FileSystem.getFolder(FileSystem.UserHome);
+    local standardSamples = userHome.getChildFile(
+        "Music/IMI/Kadabra Electronic Drumkit/Samples"
+    );
+    
+    // If samples exist in standard location, write/overwrite link file
+    if (isDefined(standardSamples) && standardSamples.isDirectory())
+    {
+        linkFile.writeString(standardSamples.toString(standardSamples.FullPath));
+        Console.print("Sample folder linked: " + 
+            standardSamples.toString(standardSamples.FullPath));
+    }
+    else
+    {
+        // Not found — HISE's built-in dialog will appear as fallback
+        Console.print("Samples not found in standard location.");
+    }
+}
+
+setupSampleFolder();
+
 function onNoteOn()
 {
 	
