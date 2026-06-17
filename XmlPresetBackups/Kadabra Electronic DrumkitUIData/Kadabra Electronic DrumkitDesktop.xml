@@ -32,20 +32,23 @@
                  numStrips="128.0" scaleFactor="0.2800000011920929" width="80"
                  height="80" isPluginParameter="1"/>
       <Component type="ScriptLabel" id="delayMixValue" x="207" y="182" parentComponent="pnlMain"
-                 width="50" height="18" text="45%" textColour="4288387995" bgColour="4278190080"/>
+                 width="50" height="18" text="0%" textColour="4288387995" bgColour="4278190080"/>
       <Component type="ScriptButton" id="delaySyncMode" x="203" y="303" width="60"
                  height="19" parentComponent="pnlMain" text="Sync" numStrips="1.0"
-                 isPluginParameter="1"/>
+                 isPluginParameter="1" pluginParameterName="Delay Sync Mode"/>
       <Component type="ScriptSlider" id="Delay Time" x="170" y="220" stepSize="1"
                  max="2500" macroControl="No MacroControl" middlePosition="500"
                  parentComponent="pnlMain" filmstripImage="{PROJECT_FOLDER}final-71.png"
                  numStrips="128.0" scaleFactor="0.2000000029802322" width="60"
-                 height="60" isPluginParameter="1" min="1"/>
+                 height="60" isPluginParameter="1" defaultValue="400.0" min="1"
+                 pluginParameterName="Delay Time"/>
       <Component type="ScriptLabel" id="delayTimeValue" x="180" y="282" parentComponent="pnlMain"
-                 width="40" height="18" text="1 ms" textColour="4288387995" bgColour="4278190080"/>
+                 width="40" height="18" text="400 ms" textColour="4288387995"
+                 bgColour="4278190080"/>
       <Component type="ScriptSlider" id="Delay Feedback" x="235" y="220" width="60"
                  height="60" parentComponent="pnlMain" filmstripImage="{PROJECT_FOLDER}final-71.png"
-                 scaleFactor="0.2000000029802322" numStrips="128.0" isPluginParameter="1"/>
+                 scaleFactor="0.2000000029802322" numStrips="128.0" isPluginParameter="1"
+                 pluginParameterName="Delay Feedback"/>
       <Component type="ScriptLabel" id="delayFeedbackValue" x="244" y="282" parentComponent="pnlMain"
                  width="40" height="18" text="0%" textColour="4288387995" bgColour="4278190080"/>
       <Component type="ScriptSlider" id="Reverb Mix" x="303" y="100" macroControl="No MacroControl"
@@ -96,7 +99,7 @@
                  scaleFactor="0.2800000011920929" width="80" height="80" pluginParameterName="Phaser Rate"
                  isPluginParameter="1"/>
       <Component type="ScriptLabel" id="phaserRateValue" x="515" y="302" width="50"
-                 height="18" parentComponent="pnlMain" text="1/2" textColour="4288387995"
+                 height="18" parentComponent="pnlMain" text="8/1" textColour="4288387995"
                  bgColour="4278190080"/>
       <Component type="ScriptLabel" id="outputGainValue" x="755" y="382" width="35"
                  height="18" parentComponent="pnlMain" text="-6.0dB" textColour="4288387995"
@@ -150,7 +153,8 @@
                  height="306" parentComponent="pnlMain" pluginParameterName="Output Gain"
                  mode="Decibel" min="-100.0" max="0.0" stepSize="0.1000000014901161"
                  suffix=" dB" middlePosition="-18.0" numStrips="256.0" filmstripImage="{PROJECT_FOLDER}Kadabra_Output_Fader_filmstrip256f.png"
-                 processorId="Simple Gain" parameterId="Gain" defaultValue="-6.0"/>
+                 processorId="Simple Gain" parameterId="Gain" defaultValue="-6.0"
+                 isPluginParameter="1"/>
     </Component>
   </Component>
   <Component type="ScriptFloatingTile" id="presetsManager" x="72" y="50" ContentType="PresetBrowser"

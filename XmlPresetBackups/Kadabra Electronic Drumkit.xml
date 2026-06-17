@@ -11,23 +11,23 @@
           <Content>
             <Control type="ScriptSlider" id="Saturation" value="0.0"/>
             <Control type="ScriptSlider" id="Brightness" value="2.682209014892578e-7"/>
-            <Control type="ScriptSlider" id="Delay Mix" value="0.449999988079071"/>
+            <Control type="ScriptSlider" id="Delay Mix" value="0.0"/>
             <Control type="ScriptButton" id="delaySyncMode" value="0.0"/>
-            <Control type="ScriptSlider" id="Delay Time" value="1.0"/>
+            <Control type="ScriptSlider" id="Delay Time" value="400.0"/>
             <Control type="ScriptSlider" id="Delay Feedback" value="0.0"/>
             <Control type="ScriptSlider" id="Reverb Mix" value="0.0"/>
             <Control type="ScriptSlider" id="Reverb Time" value="0.75"/>
             <Control type="ScriptSlider" id="Fliter Freq" value="20000.0"/>
             <Control type="ScriptSlider" id="Filter Res" value="1.0"/>
             <Control type="ScriptSlider" id="Phaser Depth" value="0.0"/>
-            <Control type="ScriptSlider" id="Phaser Rate" value="7.0"/>
+            <Control type="ScriptSlider" id="Phaser Rate" value="0.0"/>
             <Control type="ScriptButton" id="linkKsamplers" value="0.0"/>
             <Control type="ScriptButton" id="linkKadabra" value="0.0"/>
             <Control type="ScriptButton" id="linkTribalTools" value="0.0"/>
             <Control type="ScriptButton" id="linkGithub" value="0.0"/>
             <Control type="ScriptButton" id="aboutButton" value="0.0"/>
             <Control type="ScriptButton" id="presetsButton" value="0.0"/>
-            <Control type="ScriptSlider" id="Output Gain" value="-6.0"/>
+            <Control type="ScriptSlider" id="Output Gain" value="-5.999998569488525"/>
           </Content>
           <UIData Source="Kadabra Electronic DrumkitUIData"/>
         </Processor>
@@ -87,8 +87,8 @@
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
-        <Processor Type="SimpleGain" ID="Simple Gain" Bypassed="0" Gain="-6.0" Delay="0.0"
-                   Width="100.0" Balance="0.0" InvertPolarity="0.0">
+        <Processor Type="SimpleGain" ID="Simple Gain" Bypassed="0" Gain="-5.999998569488525"
+                   Delay="0.0" Width="100.0" Balance="0.0" InvertPolarity="0.0">
           <ChildProcessors>
             <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
               <ChildProcessors/>
@@ -139,9 +139,9 @@
               </ChildProcessors>
               <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
             </Processor>
-            <Processor Type="Delay" ID="Delay1" Bypassed="0" DelayTimeLeft="1.0" DelayTimeRight="1.0"
+            <Processor Type="Delay" ID="Delay1" Bypassed="0" DelayTimeLeft="400.0" DelayTimeRight="400.0"
                        FeedbackLeft="0.0" FeedbackRight="0.0" LowPassFreq="20000.0"
-                       HiPassFreq="40.0" Mix="0.449999988079071" TempoSync="0.0">
+                       HiPassFreq="40.0" Mix="0.0" TempoSync="0.0">
               <ChildProcessors/>
               <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
             </Processor>
@@ -157,7 +157,7 @@
                 <Processor Type="ModulatorChain" ID="Phase Modulation" Bypassed="0" Intensity="1.0">
                   <ChildProcessors>
                     <Processor Type="LFO" ID="LFO Modulator1" Bypassed="0" Intensity="1.0" ModulationMode="0"
-                               Frequency="7.0" FadeIn="791.0" WaveformType="1.0" Legato="1.0"
+                               Frequency="0.0" FadeIn="791.0" WaveformType="1.0" Legato="1.0"
                                TempoSync="1.0" SmoothingTime="1.070938229560852" LoopEnabled="1.0"
                                PhaseOffset="0.0" SyncToMasterClock="0.0" IgnoreNoteOn="0.0"
                                CustomWaveform="" StepData="64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+.">

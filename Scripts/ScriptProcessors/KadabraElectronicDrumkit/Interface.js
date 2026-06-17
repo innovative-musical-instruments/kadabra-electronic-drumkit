@@ -18,11 +18,11 @@ const var brightnessBroadcaster = Engine.createBroadcaster({
   "args": ["component", "value"],
   "tags": []
 });
-// Delay Mix Broadcaster
 brightnessBroadcaster.attachToComponentValue(["Brightness"], "");
 brightnessBroadcaster.addComponentPropertyListener(["brightnessValue"], ["text"], "BrightnessValue", function(index, component, value){
 	return Math.round(value * 10) / 10 + "dB";
 });
+// Delay Mix Broadcaster
 const var delayMixBroadcaster = Engine.createBroadcaster({
   "id": "delayMixBroadcaster",
   "args": ["component", "value"],
@@ -108,7 +108,7 @@ phaserDepthBroadcaster.addComponentPropertyListener(["phaserDepthValue"], ["text
 const var PhaserRateKnob = Content.getComponent("Phaser Rate");
 const var Phaser1LFO = Synth.getModulator("LFO Modulator1");
 
-// Apply tempo-table offset so knob index 0 = "4/1", index 21 = "1/64T"
+// Apply tempo-table offset so knob index 0 = "8/1", index 20 = "1/64T"
 inline function onPhaserRateControl(component, value)
 {
     Phaser1LFO.setAttribute(Phaser1LFO.getAttributeIndex("Frequency"), value);
@@ -130,7 +130,7 @@ phaserRateBroadcaster.addComponentPropertyListener(
     {
         var idx = Math.round(value);
         if (idx < 0) idx = 0;
-        if (idx > 21) idx = 21;
+        if (idx > 20) idx = 20;
         return phaserTempoNames[idx];
     }
 );
@@ -181,17 +181,22 @@ const var DelayTimeKnob = Content.getComponent("Delay Time");
 const var DelayFeedbackKnob = Content.getComponent("Delay Feedback");
 const var DelaySyncMode = Content.getComponent("delaySyncMode");
 const var Delay1 = Synth.getEffect("Delay1");
-const var SYNC_OFFSET = 5; // HISE_USE_EXTENDED_TEMPO_VALUES adds 5 slow values before "1/1";
+
+// Per-mode memory — defaults apply on first load; DAW recall overwrites via callbacks
+reg lastFreeValue = 400;
+reg lastSyncValue = 8;
 
 // L/R mirror: Delay Time
 inline function onDelayTimeControl(component, value)
 {
-    local sendValue = value;
-    if (DelaySyncMode.getValue() == 1) // Sync mode — offset into extended tempo table
-        sendValue = value + SYNC_OFFSET;
-    
-    Delay1.setAttribute(0, sendValue); // DelayTimeLeft
-    Delay1.setAttribute(1, sendValue); // DelayTimeRight
+    // Track the value per-mode so mode toggles can restore it later
+    if (DelaySyncMode.getValue() == 1)
+        lastSyncValue = value;
+    else
+        lastFreeValue = value;
+
+    Delay1.setAttribute(0, value); // DelayTimeLeft
+    Delay1.setAttribute(1, value); // DelayTimeRight
 }
 DelayTimeKnob.setControlCallback(onDelayTimeControl);
 
@@ -215,7 +220,8 @@ inline function onDelaySyncModeControl(component, value)
         DelayTimeKnob.set("max", 18);
         DelayTimeKnob.set("middlePosition", 9);   // linear across divisions
         DelayTimeKnob.set("stepSize", 1);
-        DelayTimeKnob.setValue(8); // default 1/8
+        DelayTimeKnob.set("defaultValue", 8);     // double-click reset target
+        DelayTimeKnob.setValue(lastSyncValue);    // restore last sync value
     }
     else // Free mode
     {
@@ -223,16 +229,14 @@ inline function onDelaySyncModeControl(component, value)
         DelayTimeKnob.set("max", 2500);
         DelayTimeKnob.set("middlePosition", 500); // 50% → 500 ms
         DelayTimeKnob.set("stepSize", 1);
-        DelayTimeKnob.setValue(400); // default 400ms
+        DelayTimeKnob.set("defaultValue", 400);   // double-click reset target
+        DelayTimeKnob.setValue(lastFreeValue);    // restore last free value
     }
     
     // push the new value through so audio updates immediately
-local pushValue = DelayTimeKnob.getValue();
-if (value == 1) // Sync mode
-    pushValue = pushValue + SYNC_OFFSET;
-
-Delay1.setAttribute(0, pushValue);
-Delay1.setAttribute(1, pushValue);
+    local pushValue = DelayTimeKnob.getValue();
+    Delay1.setAttribute(0, pushValue);
+    Delay1.setAttribute(1, pushValue);
 }
 DelaySyncMode.setControlCallback(onDelaySyncModeControl);
 
@@ -243,6 +247,8 @@ if (DelaySyncMode.getValue() == 1)
     DelayTimeKnob.set("max", 18);
     DelayTimeKnob.set("middlePosition", 9);
     DelayTimeKnob.set("stepSize", 1);
+    DelayTimeKnob.set("defaultValue", 8);
+    DelayTimeKnob.setValue(lastSyncValue);
 }
 else
 {
@@ -250,7 +256,14 @@ else
     DelayTimeKnob.set("max", 2500);
     DelayTimeKnob.set("middlePosition", 500);
     DelayTimeKnob.set("stepSize", 1);
+    DelayTimeKnob.set("defaultValue", 400);
+    DelayTimeKnob.setValue(lastFreeValue);
 }
+
+// push the initial value through so audio matches the UI on load
+local initValue = DelayTimeKnob.getValue();
+Delay1.setAttribute(0, initValue);
+Delay1.setAttribute(1, initValue);
 
 // Delay Feedback label broadcaster
 const var delayFeedbackBroadcaster = Engine.createBroadcaster({
@@ -444,19 +457,10 @@ inline function setupSampleFolder()
     if (isDefined(standardSamples) && standardSamples.isDirectory())
     {
         linkFile.writeString(standardSamples.toString(standardSamples.FullPath));
-        Console.print("Sample folder linked: " + 
-            standardSamples.toString(standardSamples.FullPath));
-    }
-    else
-    {
-        // Not found — HISE's built-in dialog will appear as fallback
-        Console.print("Samples not found in standard location.");
     }
 }
 
-setupSampleFolder();
-
-function onNoteOn()
+setupSampleFolder();function onNoteOn()
 {
 	
 }
