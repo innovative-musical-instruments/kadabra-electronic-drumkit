@@ -11,10 +11,10 @@
           <Content>
             <Control type="ScriptSlider" id="Saturation" value="0.0"/>
             <Control type="ScriptSlider" id="Brightness" value="2.682209014892578e-7"/>
-            <Control type="ScriptSlider" id="Delay Mix" value="0.0"/>
-            <Control type="ScriptButton" id="delaySyncMode" value="0.0"/>
-            <Control type="ScriptSlider" id="Delay Time" value="400.0"/>
-            <Control type="ScriptSlider" id="Delay Feedback" value="0.0"/>
+            <Control type="ScriptSlider" id="Delay Mix" value="0.4099999964237213"/>
+            <Control type="ScriptButton" id="delaySyncMode" value="1.0"/>
+            <Control type="ScriptSlider" id="Delay Time" value="7.0"/>
+            <Control type="ScriptSlider" id="Delay Feedback" value="0.449999988079071"/>
             <Control type="ScriptSlider" id="Reverb Mix" value="0.0"/>
             <Control type="ScriptSlider" id="Reverb Time" value="0.75"/>
             <Control type="ScriptSlider" id="Fliter Freq" value="20000.0"/>
@@ -28,6 +28,8 @@
             <Control type="ScriptButton" id="aboutButton" value="0.0"/>
             <Control type="ScriptButton" id="presetsButton" value="0.0"/>
             <Control type="ScriptSlider" id="Output Gain" value="-5.999998569488525"/>
+            <Control type="ScriptSlider" id="delayFreeMemory" value="400.0"/>
+            <Control type="ScriptSlider" id="delaySyncMemory" value="7.0"/>
           </Content>
           <UIData Source="Kadabra Electronic DrumkitUIData"/>
         </Processor>
@@ -139,9 +141,10 @@
               </ChildProcessors>
               <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
             </Processor>
-            <Processor Type="Delay" ID="Delay1" Bypassed="0" DelayTimeLeft="400.0" DelayTimeRight="400.0"
-                       FeedbackLeft="0.0" FeedbackRight="0.0" LowPassFreq="20000.0"
-                       HiPassFreq="40.0" Mix="0.0" TempoSync="0.0">
+            <Processor Type="Delay" ID="Delay1" Bypassed="0" DelayTimeLeft="12.0" DelayTimeRight="12.0"
+                       FeedbackLeft="0.449999988079071" FeedbackRight="0.449999988079071"
+                       LowPassFreq="20000.0" HiPassFreq="40.0" Mix="0.4099999964237213"
+                       TempoSync="1.0">
               <ChildProcessors/>
               <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
             </Processor>

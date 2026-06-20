@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <samplemap ID="ElectronicDrumkitSampleMap" RRGroupAmount="1.0" MicPositions=";"
-           CrossfadeGamma="1.0" SaveMode="2">
+           CrossfadeGamma="1.0" SaveMode="1">
   <sample Root="1" LoKey="1" HiKey="1" LoVel="0" HiVel="127" RRGroup="1"
           FileName="{PROJECT_FOLDER}Electronic Drumkit Samples/ElectronicDrumkit_0_Kick1.wav"
           Duplicate="0" SampleEnd="37565" SampleRate="44100.0" MonolithOffset="0"

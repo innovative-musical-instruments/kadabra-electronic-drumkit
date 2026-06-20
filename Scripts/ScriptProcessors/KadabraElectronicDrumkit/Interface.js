@@ -182,21 +182,29 @@ const var DelayFeedbackKnob = Content.getComponent("Delay Feedback");
 const var DelaySyncMode = Content.getComponent("delaySyncMode");
 const var Delay1 = Synth.getEffect("Delay1");
 
-// Per-mode memory — defaults apply on first load; DAW recall overwrites via callbacks
-reg lastFreeValue = 400;
-reg lastSyncValue = 8;
+// Per-mode memory — stored in hidden knobs so values are saved/recalled with presets
+const var delayFreeMemory = Content.getComponent("delayFreeMemory");
+const var delaySyncMemory = Content.getComponent("delaySyncMemory");
+
+// Sync offset: compensates for 5 extra slow divisions prepended by
+// HISE_USE_EXTENDED_TEMPO_VALUES=1 in compiled builds.
+// Applied to audio attribute calls only — display label uses raw knob index.
+const var SYNC_OFFSET = 5;
 
 // L/R mirror: Delay Time
 inline function onDelayTimeControl(component, value)
 {
-    // Track the value per-mode so mode toggles can restore it later
+    // Track the value per-mode in hidden knobs so it's saved with presets
     if (DelaySyncMode.getValue() == 1)
-        lastSyncValue = value;
+        delaySyncMemory.setValue(value);
     else
-        lastFreeValue = value;
+        delayFreeMemory.setValue(value);
 
-    Delay1.setAttribute(0, value); // DelayTimeLeft
-    Delay1.setAttribute(1, value); // DelayTimeRight
+    // In sync mode, offset the index sent to the audio engine to align
+    // with the extended tempo table active in compiled builds
+    var audioValue = (DelaySyncMode.getValue() == 1) ? value + SYNC_OFFSET : value;
+    Delay1.setAttribute(0, audioValue); // DelayTimeLeft
+    Delay1.setAttribute(1, audioValue); // DelayTimeRight
 }
 DelayTimeKnob.setControlCallback(onDelayTimeControl);
 
@@ -221,7 +229,7 @@ inline function onDelaySyncModeControl(component, value)
         DelayTimeKnob.set("middlePosition", 9);   // linear across divisions
         DelayTimeKnob.set("stepSize", 1);
         DelayTimeKnob.set("defaultValue", 8);     // double-click reset target
-        DelayTimeKnob.setValue(lastSyncValue);    // restore last sync value
+        DelayTimeKnob.setValue(delaySyncMemory.getValue());    // restore last sync value
     }
     else // Free mode
     {
@@ -230,13 +238,14 @@ inline function onDelaySyncModeControl(component, value)
         DelayTimeKnob.set("middlePosition", 500); // 50% → 500 ms
         DelayTimeKnob.set("stepSize", 1);
         DelayTimeKnob.set("defaultValue", 400);   // double-click reset target
-        DelayTimeKnob.setValue(lastFreeValue);    // restore last free value
+        DelayTimeKnob.setValue(delayFreeMemory.getValue());    // restore last free value
     }
     
     // push the new value through so audio updates immediately
     local pushValue = DelayTimeKnob.getValue();
-    Delay1.setAttribute(0, pushValue);
-    Delay1.setAttribute(1, pushValue);
+    var audioPush = (value == 1) ? pushValue + SYNC_OFFSET : pushValue;
+    Delay1.setAttribute(0, audioPush);
+    Delay1.setAttribute(1, audioPush);
 }
 DelaySyncMode.setControlCallback(onDelaySyncModeControl);
 
@@ -248,7 +257,7 @@ if (DelaySyncMode.getValue() == 1)
     DelayTimeKnob.set("middlePosition", 9);
     DelayTimeKnob.set("stepSize", 1);
     DelayTimeKnob.set("defaultValue", 8);
-    DelayTimeKnob.setValue(lastSyncValue);
+    DelayTimeKnob.setValue(delaySyncMemory.getValue());
 }
 else
 {
@@ -257,13 +266,14 @@ else
     DelayTimeKnob.set("middlePosition", 500);
     DelayTimeKnob.set("stepSize", 1);
     DelayTimeKnob.set("defaultValue", 400);
-    DelayTimeKnob.setValue(lastFreeValue);
+    DelayTimeKnob.setValue(delayFreeMemory.getValue());
 }
 
 // push the initial value through so audio matches the UI on load
 local initValue = DelayTimeKnob.getValue();
-Delay1.setAttribute(0, initValue);
-Delay1.setAttribute(1, initValue);
+var audioInit = (DelaySyncMode.getValue() == 1) ? initValue + SYNC_OFFSET : initValue;
+Delay1.setAttribute(0, audioInit);
+Delay1.setAttribute(1, audioInit);
 
 // Delay Feedback label broadcaster
 const var delayFeedbackBroadcaster = Engine.createBroadcaster({
