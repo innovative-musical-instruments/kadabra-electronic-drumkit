@@ -38,6 +38,7 @@ XmlPresetBackups/KEDK_DelayFixPart2*
 # Windows system files
 Thumbs.db
 Desktop.ini
+*.lnk
 
 # JUCE/Projucer
 *.jucer.bak
