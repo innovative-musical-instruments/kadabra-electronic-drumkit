@@ -25,6 +25,8 @@
             <Control type="ScriptButton" id="linkKadabra" value="0.0"/>
             <Control type="ScriptButton" id="linkTribalTools" value="0.0"/>
             <Control type="ScriptButton" id="linkGithub" value="0.0"/>
+            <Control type="ScriptButton" id="linkHISE" value="0.0"/>
+            <Control type="ScriptButton" id="linkJUCE" value="0.0"/>
             <Control type="ScriptButton" id="aboutButton" value="0.0"/>
             <Control type="ScriptButton" id="presetsButton" value="0.0"/>
             <Control type="ScriptSlider" id="Output Gain" value="1.0"/>
