@@ -55,3 +55,6 @@ xcuserdata/
 *.component
 *.app
 *.exe
+
+# Internal pipeline notes (kept private; canonical copy in imi-common-docs)
+CLAUDE.md
