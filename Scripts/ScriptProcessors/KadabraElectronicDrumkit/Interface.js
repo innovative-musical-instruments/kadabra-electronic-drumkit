@@ -240,7 +240,7 @@ inline function onDelaySyncModeControl(component, value)
         DelayTimeKnob.set("max", 18);
         DelayTimeKnob.set("middlePosition", 9);   // linear across divisions
         DelayTimeKnob.set("stepSize", 1);
-        DelayTimeKnob.set("defaultValue", 8);     // double-click reset target
+        DelayTimeKnob.set("defaultValue", 7);     // double-click reset target
         DelayTimeKnob.setValue(delaySyncMemory.getValue());    // restore last sync value
     }
     else // Free mode
@@ -268,7 +268,7 @@ if (DelaySyncMode.getValue() == 1)
     DelayTimeKnob.set("max", 18);
     DelayTimeKnob.set("middlePosition", 9);
     DelayTimeKnob.set("stepSize", 1);
-    DelayTimeKnob.set("defaultValue", 8);
+    DelayTimeKnob.set("defaultValue", 7);
     DelayTimeKnob.setValue(delaySyncMemory.getValue());
 }
 else
